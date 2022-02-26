@@ -108,10 +108,6 @@ Pulsar.registerFunction("rgbaToHsla", function (r, g, b, a = 1) {
   );
 });
 
-Pulsar.registerFunction("pixelsToRem", function (value) {
-  return `${value["measure"] / 10}rem`;
-});
-
 Pulsar.registerFunction("logKeys", function (object) {
   for (const entry in object) {
     console.log(entry);
@@ -130,4 +126,50 @@ Pulsar.registerFunction("baseWrap", function (token, designSystemName) {
   }
 
   return token;
+});
+
+Pulsar.registerFunction("getSelector", function (name) {
+  const safeName = name.toLowerCase();
+
+  return '[data-theme="' + safeName + '"]';
+});
+
+Pulsar.registerFunction("getScheme", function (name) {
+  const safeName = name.toLowerCase();
+
+  if (safeName === "dark") {
+    return "color-scheme: dark;";
+  }
+
+  return "color-scheme: light;";
+});
+
+Pulsar.registerFunction("pixelsToRem", function (value) {
+  return `${value["measure"] / 10}rem`;
+});
+
+Pulsar.registerFunction("log", function (token) {
+  console.log(Object.keys(token));
+  console.log(token.name);
+
+  return token;
+});
+
+Pulsar.registerFunction(
+  "constructGenericTokensStyles",
+  function (token, dsName) {
+    const name = token.name;
+    const safeThemeName = dsName.toLowerCase();
+
+    if (token.name.includes("keyframes")) {
+      return `@keyframes ${safeThemeName}-${name} `;
+    }
+
+    return token.name;
+  }
+);
+
+Pulsar.registerFunction("prefixWithThemeName", function (value, dsName) {
+  const safeThemeName = dsName.toLowerCase();
+  return `${safeThemeName}-${value}`;
 });

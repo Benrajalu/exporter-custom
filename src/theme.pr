@@ -1,0 +1,63 @@
+{[ const designSystem = ds.currentDesignSystem() /]}
+{[ let brand = ds.currentBrand() /]}
+{[ const selector = getSelector(designSystem.name) /]}
+
+{{ selector }} {
+{[ for token in ds.tokensByType("Color", brand.id) ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+
+
+{[/]}
+
+{[ for token in ds.tokensByType("Gradient", brand.id) ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+    
+
+{[/]}
+
+{[ for token in ds.tokensByType("Border", brand.id) ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+    
+
+{[/]}
+
+{[ for token in ds.tokensByType("Measure", brand.id) ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+    
+
+{[/]}
+
+{[ for token in ds.tokensByType("Shadow", brand.id) ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+    
+
+{[/]}
+
+{[ const allTokens = ds.tokensByType("Typography", brand.id) /]}
+{[ for token in allTokens ]}
+{[ if !token.referencedToken ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+
+
+{[/]}
+{[/]}
+
+{[ for token in ds.tokensByType("Radius", brand.id) ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+    
+
+{[/]}
+
+{[ for token in ds.tokensByType("Text", brand.id) ]}
+    {[ inject "rendered-token-custom-prop" context token /]}
+
+
+{[/]}
+    {{ getScheme(designSystem.name) }}
+}
+
+{[ for token in ds.tokensByType("GenericToken", brand.id) ]}
+{[ inject "rendered-token-style" context token /]}
+    
+
+{[/]}

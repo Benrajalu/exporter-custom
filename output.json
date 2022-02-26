@@ -3,6 +3,10 @@
     {
       "invoke": "tokens.pr",
       "write_to": "_tokens.scss"
+    },
+    {
+      "invoke": "theme.pr",
+      "write_to": "_theme.scss"
     }
   ]
 }
