@@ -1,8 +1,8 @@
 {
-    "blueprints": [
-        {
-            "invoke": "allTokens.pr",
-            "write_to": "_tokens.scss"
-        }
-    ]
+  "blueprints": [
+    {
+      "invoke": "tokens.pr",
+      "write_to": "_tokens.scss"
+    }
+  ]
 }

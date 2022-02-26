@@ -61,14 +61,14 @@ Pulsar.registerFunction("gradientAngle", function (from, to) {
  * Prefixes: Add prefix for each category of the tokens. For example, all colors can start with "color, if needed"
  */
 Pulsar.registerPayload("behavior", {
-  colorTokenPrefix: "coral-color",
-  borderTokenPrefix: "coral-border",
-  gradientTokenPrefix: "coral-color",
-  measureTokenPrefix: "coral-",
-  shadowTokenPrefix: "coral-",
-  typographyTokenPrefix: "coral-",
-  radiusTokenPrefix: "coral-",
-  textTokenPrefix: "coral-",
+  colorTokenPrefix: "color",
+  borderTokenPrefix: "border",
+  gradientTokenPrefix: "color",
+  measureTokenPrefix: "",
+  shadowTokenPrefix: "",
+  typographyTokenPrefix: "",
+  radiusTokenPrefix: "",
+  textTokenPrefix: "",
 });
 
 Pulsar.registerFunction("rgbaToHsla", function (r, g, b, a = 1) {
@@ -108,32 +108,6 @@ Pulsar.registerFunction("rgbaToHsla", function (r, g, b, a = 1) {
   );
 });
 
-Pulsar.registerFunction("subFamilyToWeight", function (subfamily) {
-  const cleanSubFamily = subfamily.toLowerCase;
-  switch (cleanSubFamily) {
-    case "thin":
-      return 100;
-    case "extralight":
-      return 200;
-    case "light":
-      return 300;
-    case "normal":
-      return 400;
-    case "medium":
-      return 500;
-    case "semibold":
-      return 600;
-    case "bold":
-      return 700;
-    case "extrabold":
-      return 800;
-    case "black":
-      return 900;
-    default:
-      return 400;
-  }
-});
-
 Pulsar.registerFunction("pixelsToRem", function (value) {
   return `${value["measure"] / 10}rem`;
 });
@@ -151,8 +125,8 @@ Pulsar.registerFunction("baseWrap", function (token, designSystemName) {
     return `url("${token}")`;
   }
 
-  if(token.includes('keyframes')){
-    return token.replace('coral', `coral-${safeName}`);
+  if (token.includes("keyframes")) {
+    return token.replace("keyframes", `keyframes-${safeName}`);
   }
 
   return token;
